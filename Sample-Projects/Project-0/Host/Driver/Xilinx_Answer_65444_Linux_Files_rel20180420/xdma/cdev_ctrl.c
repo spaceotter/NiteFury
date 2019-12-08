@@ -31,7 +31,7 @@ static ssize_t char_ctrl_read(struct file *fp, char __user *buf, size_t count,
 
 	rv = xcdev_check(__func__, xcdev, 0);
 	if (rv < 0)
-		return rv;	
+		return rv;
 	xdev = xcdev->xdev;
 
 	/* only 32-bit aligned and 32-bit multiples */
@@ -62,7 +62,7 @@ static ssize_t char_ctrl_write(struct file *file, const char __user *buf,
 
 	rv = xcdev_check(__func__, xcdev, 0);
 	if (rv < 0)
-		return rv;	
+		return rv;
 	xdev = xcdev->xdev;
 
 	/* only 32-bit aligned and 32-bit multiples */
@@ -122,7 +122,7 @@ long char_ctrl_ioctl(struct file *filp, unsigned int cmd, unsigned long arg)
 
 	rv = xcdev_check(__func__, xcdev, 0);
 	if (rv < 0)
-		return rv;	
+		return rv;
 	xdev = xcdev->xdev;
 
 	pr_info("cmd 0x%x, xdev 0x%p, pdev 0x%p.\n", cmd, xdev, xdev->pdev);
@@ -134,10 +134,10 @@ long char_ctrl_ioctl(struct file *filp, unsigned int cmd, unsigned long arg)
 	}
 
 	if (_IOC_DIR(cmd) & _IOC_READ)
-		result = !access_ok(VERIFY_WRITE, (void __user *)arg,
+		result = !access_ok((void __user *)arg,
 				_IOC_SIZE(cmd));
 	else if (_IOC_DIR(cmd) & _IOC_WRITE)
-		result =  !access_ok(VERIFY_READ, (void __user *)arg,
+		result =  !access_ok((void __user *)arg,
 				_IOC_SIZE(cmd));
 
 	if (result) {
@@ -194,7 +194,7 @@ int bridge_mmap(struct file *file, struct vm_area_struct *vma)
 
 	rv = xcdev_check(__func__, xcdev, 0);
 	if (rv < 0)
-		return rv;	
+		return rv;
 	xdev = xcdev->xdev;
 
 	off = vma->vm_pgoff << PAGE_SHIFT;
