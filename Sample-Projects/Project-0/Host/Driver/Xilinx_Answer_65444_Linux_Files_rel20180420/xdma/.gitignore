@@ -1,0 +1,7 @@
+Module.symvers
+*.cmd
+modules.order
+xdma.mod
+xdma.mod.c
+*.ko
+*.o.d
